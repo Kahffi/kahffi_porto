@@ -11,10 +11,7 @@ export default function ObservedElements(
   useEffect(() => {
     const parent = parentRef.current;
     if (!parent) return;
-    function handleIntersect(
-      entries: IntersectionObserverEntry[],
-      observer: IntersectionObserver
-    ) {
+    function handleIntersect(entries: IntersectionObserverEntry[]) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveId(entry.target.id as ActiveId);
@@ -23,7 +20,7 @@ export default function ObservedElements(
     }
 
     const observer = new IntersectionObserver(handleIntersect, {
-      threshold: 1,
+      threshold: 0.6,
     });
     for (const element of parent.children) {
       observer.observe(element);

@@ -36,7 +36,7 @@ function NavBarIndicator({
 
   return (
     <div
-      className={`z-0 absolute h-12 translate-y-1/2 -top-1/2 bg-purple-900 rounded-full ${
+      className={`z-0 absolute h-9 translate-y-1/2 -top-1/2 bg-purple-900 rounded-full ${
         isHidden && "opacity-0"
       }`}
       style={indicatorStyle}
@@ -47,7 +47,7 @@ function NavBarIndicator({
 
 export default function NavBar() {
   const sectionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-  const { SECTIONS, setActiveId, activeId } = useContext(PageContext)!;
+  const { SECTIONS, activeId, setActiveId } = useContext(PageContext)!;
   const [scrolled, setScrolled] = useState(false);
 
   // function navbarNavigate(section: ActiveId) {
@@ -60,6 +60,7 @@ export default function NavBar() {
         setScrolled(true);
       } else {
         setScrolled(false);
+        setActiveId("Home");
       }
     }
 
@@ -70,7 +71,7 @@ export default function NavBar() {
   return (
     <nav className="w-full flex justify-center fixed left-1/2 -translate-x-1/2 top-3 z-50 ">
       <ul
-        className={`relative flex gap-3 py-4 px-7 rounded-full text-xl font-semibold border-blue-950 ${
+        className={`relative flex gap-3 py-3 px-2 rounded-full font-semibold border-blue-950 ${
           scrolled && "bg-blue-950/60 -mt-1 border-2 backdrop-blur-xl shadow-md"
         }  `}
       >
@@ -82,12 +83,14 @@ export default function NavBar() {
               key={`nav-${section}`}
             >
               <a
-                className="px-6"
+                className="px-4"
                 href={`#${section}`}
                 // onClick={() => navbarNavigate(section as ActiveId)}
                 ref={(e) => (sectionRefs.current[idx] = e)}
+                data-section-name={section}
               >
-                {section}
+                <span className="hidden sm:inline-block">{section}</span>
+                <span className="sm:hidden">H</span>
               </a>
             </li>
           );
@@ -97,12 +100,14 @@ export default function NavBar() {
 
         <NavBarIndicator
           pos={
-            sectionRefs.current.find((el) => el?.text === activeId)
-              ?.offsetLeft || 0
+            sectionRefs.current.find(
+              (el) => el?.dataset["sectionName"] === activeId
+            )?.offsetLeft || 0
           }
           width={
-            sectionRefs.current.find((el) => el?.text === activeId)
-              ?.offsetWidth || 0
+            sectionRefs.current.find(
+              (el) => el?.dataset["sectionName"] === activeId
+            )?.offsetWidth || 0
           }
           isHidden={!scrolled}
         />

@@ -1,7 +1,8 @@
-import Intro from "./component/Intro";
-import NavBar from "./component/NavBar";
-import ObservedElements from "./component/ObservedElements";
-import Projects from "./component/Projects";
+import About from "./components/About";
+import Intro from "./components/Intro";
+import NavBar from "./components/NavBar";
+import ObservedElements from "./components/ObservedElements";
+import Projects from "./components/Projects";
 import PageContextProvider from "./contexts/PageContextProvider";
 
 function App() {
@@ -10,14 +11,17 @@ function App() {
       <PageContextProvider>
         <NavBar />
 
-        <ObservedElements className="flex flex-col gap-20 sm:gap-40 pt-10 items-center">
+        <ObservedElements className="flex flex-col gap-52 sm:gap-64 pt-10 items-center pb-20">
           {/* hero section */}
           <Intro id="Home" />
 
-          <div className="h-[400px] w-full bg-white" id="About"></div>
+          <About id="About" />
 
           <Projects />
-          <div className="h-[400px] w-full bg-white" id="Contacts"></div>
+          <div
+            className="h-[400px] w-full bg-white scroll-mt-20"
+            id="Contacts"
+          ></div>
         </ObservedElements>
       </PageContextProvider>
     </div>
