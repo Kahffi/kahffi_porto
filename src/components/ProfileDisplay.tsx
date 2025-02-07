@@ -1,4 +1,4 @@
-import profilePict from "../assets/images/Muhammad Daffa Al Kahffi_noBG.png";
+import profilePict from "../assets/images/Muhammad Daffa_Al_Kahffi_noBG.png";
 
 export default function ProfileDisplay() {
   return (
