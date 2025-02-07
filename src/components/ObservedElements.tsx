@@ -20,7 +20,7 @@ export default function ObservedElements(
     }
 
     const observer = new IntersectionObserver(handleIntersect, {
-      threshold: 0.6,
+      threshold: 0.3,
     });
     for (const element of parent.children) {
       observer.observe(element);

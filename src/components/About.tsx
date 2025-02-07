@@ -41,10 +41,10 @@ export default function About(props: Props) {
       </section>
       <div className="flex flex-col gap-5 md:min-h-full flex-1">
         <section className="flex flex-col gap-3">
-          <h3 className="text-4xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text w-fit">
+          <h3 className="text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text w-fit">
             Skills
           </h3>
-          <ul className="flex flex-col gap-3 text-xl py-3 px-2 font-semibold">
+          <ul className="flex flex-col gap-3 py-3 px-2 font-semibold">
             {skills.map((skill) => {
               return (
                 <li
@@ -60,10 +60,10 @@ export default function About(props: Props) {
           </ul>
         </section>
         <section className="flex flex-col gap-3">
-          <h3 className="text-4xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text w-fit">
+          <h3 className="text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text w-fit">
             Tools Under My Belt
           </h3>
-          <ul className="text-lg font-semibold flex flex-wrap justify-center gap-5 py-3 px-2">
+          <ul className=" font-semibold flex flex-wrap justify-center gap-5 py-3 px-2">
             {tools.map((tool) => {
               return (
                 <li

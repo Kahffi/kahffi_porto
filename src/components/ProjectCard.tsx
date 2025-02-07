@@ -16,7 +16,7 @@ export default function ProjectCard({ project }: Props) {
   // const testImage = cld.image(`cld-sample`);
 
   return (
-    <div className="w-[350px] sm:w-[350px] text-lg border-[3px] shadow-md p-4 flex flex-col gap-5 rounded-[24px] h-[450px]">
+    <div className="w-[350px] sm:w-[350px] text-lg border-[3px] shadow-md p-4 flex flex-col gap-5 rounded-[24px] h-[450px] bg-slate-950 border-slate-700  shadow-slate-950">
       <div className="w-full aspect-video rounded-lg overflow-hidden">
         <img src={project.image} className="w-full h-full" />
       </div>
@@ -24,19 +24,18 @@ export default function ProjectCard({ project }: Props) {
       <div className="flex-1 flex flex-col gap-2">
         <h2 className="font-bold text-xl flex justify-between items-center gap-2">
           {project.title}{" "}
-          <div>
+          <div className="text-2xl flex gap-2">
             {project.repoLink && (
-              <a target="_blank" href={project.repoLink} className="text-3xl">
+              <a target="_blank" href={project.repoLink}>
                 <Icon className="inline cursor-pointer" icon={"mdi:github"} />
               </a>
             )}
             {project.projectLink && (
-              <a
-                target="_blank"
-                href={project.projectLink}
-                className="text-3xl"
-              >
-                <Icon className="inline cursor-pointer" icon={"mdi:github"} />
+              <a target="_blank" href={project.projectLink}>
+                <Icon
+                  className="inline cursor-pointer"
+                  icon={"mdi:open-in-new"}
+                />
               </a>
             )}
           </div>

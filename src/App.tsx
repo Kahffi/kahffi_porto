@@ -4,10 +4,11 @@ import NavBar from "./components/NavBar";
 import ObservedElements from "./components/ObservedElements";
 import Projects from "./components/Projects";
 import PageContextProvider from "./contexts/PageContextProvider";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className=" relative text-white bg-slate-900 min-h-dvh px-16 scroll-smooth">
+    <div className=" relative text-white bg-slate-900 min-h-dvh px-16 scroll-smooth pb-36">
       <PageContextProvider>
         <NavBar />
 
@@ -18,12 +19,9 @@ function App() {
           <About id="About" />
 
           <Projects />
-          <div
-            className="h-[400px] w-full bg-white scroll-mt-20"
-            id="Contacts"
-          ></div>
         </ObservedElements>
       </PageContextProvider>
+      <Footer />
     </div>
   );
 }

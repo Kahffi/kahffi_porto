@@ -8,7 +8,7 @@ export default function PageContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const SECTIONS = ["Home", "About", "Projects", "Contacts"];
+  const SECTIONS = ["Home", "About", "Projects"];
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeId, setActiveId] = useState<ActiveId>("Home");
   return (

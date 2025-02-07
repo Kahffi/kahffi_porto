@@ -49,6 +49,7 @@ export default function NavBar() {
   const sectionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const { SECTIONS, activeId, setActiveId } = useContext(PageContext)!;
   const [scrolled, setScrolled] = useState(false);
+  console.log(activeId, "activeId");
 
   // function navbarNavigate(section: ActiveId) {
   //   setActiveId(section);
@@ -66,6 +67,7 @@ export default function NavBar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -89,8 +91,8 @@ export default function NavBar() {
                 ref={(e) => (sectionRefs.current[idx] = e)}
                 data-section-name={section}
               >
-                <span className="hidden sm:inline-block">{section}</span>
-                <span className="sm:hidden">H</span>
+                <span className=" sm:inline-block">{section}</span>
+                {/* <span className="sm:hidden">H</span> */}
               </a>
             </li>
           );
