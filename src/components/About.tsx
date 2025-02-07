@@ -1,5 +1,13 @@
-import { ComponentPropsWithoutRef, useState } from "react";
+import {
+  ComponentPropsWithoutRef,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import LabelWithIcon from "./ui/LabelsWithIcon";
+import GradientText from "./ui/GradientText";
+import wavingHand from "../assets/noto--waving-hand.svg";
+import { PageContext } from "../contexts/PageContext";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
   id: string;
@@ -24,6 +32,16 @@ export default function About(props: Props) {
     { tool: "CSS", icon: "mdi:language-css3" },
     { tool: "SQL", icon: "mdi:database" },
   ]);
+  const { activeId } = useContext(PageContext)!;
+  const [animateHand, setAnimateHand] = useState(false);
+
+  useEffect(() => {
+    if (animateHand) return;
+
+    if (activeId === props.id) {
+      setAnimateHand(true);
+    }
+  }, [animateHand, activeId, props.id]);
   return (
     <div
       id={props.id}
@@ -31,19 +49,38 @@ export default function About(props: Props) {
     >
       <section className="max-w-[600px] flex flex-col gap-5 flex-1">
         <h2 className="text-6xl font-bold">
-          Hello,
+          Hello{" "}
+          <span className="transform">
+            <img
+              src={wavingHand}
+              alt=""
+              width={"50px"}
+              className={`inline ${
+                animateHand && "animate-waving_hand"
+              } transform scale-x-[-1]`}
+            />
+          </span>
           <br /> I'm Daffa
         </h2>
         <p className="text-xl font-medium">
-          I'm highly excited to bring amazing ideas comes to life, whether it's
-          developing useful applications, impactful hardwares, or both.
+          I have a deep passion and boundless curiosity in{" "}
+          <GradientText>Software Development</GradientText>, the{" "}
+          <GradientText>Internet of Things</GradientText>, and{" "}
+          <GradientText>Artificial Intelligence</GradientText>. I thrive on
+          bringing innovative ideas to life, whether through impactful
+          applications, cutting-edge hardware, or a seamless fusion of both.
         </p>
       </section>
       <div className="flex flex-col gap-5 md:min-h-full flex-1">
         <section className="flex flex-col gap-3">
-          <h3 className="text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text w-fit">
+          <GradientText
+            fromColor="blue-400"
+            toColor="purple-400"
+            textSize="3xl"
+            fontWeight="bold"
+          >
             Skills
-          </h3>
+          </GradientText>
           <ul className="flex flex-col gap-3 py-3 px-2 font-semibold">
             {skills.map((skill) => {
               return (
