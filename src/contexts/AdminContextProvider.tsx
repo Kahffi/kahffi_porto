@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { AdminContext } from "./AdminContext";
 
 export default function AdminContextProvider() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [uid, setUid] = useState(null);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [uid] = useState(null);
 
   useEffect(() => {}, []);
 
