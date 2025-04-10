@@ -1,7 +1,21 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import ProfileDisplay from "./ProfileDisplay";
 
-export default function Intro({ id }: { id: string }) {
+type IntroContent = {
+  header: string,
+  subHeader: string,
+  image: string
+}
+
+type Props = {
+  id: string,
+  introContent: IntroContent
+}
+
+export default function Intro({ id, introContent }: Props) {
+  const image = `data:image/jpeg;base64,${introContent.image}`
+
+
   return (
     <header
       id={id}
@@ -12,11 +26,10 @@ export default function Intro({ id }: { id: string }) {
         <section className="flex flex-col max-w-[600px] text-xl gap-3 lg:gap-10">
           <div className="flex flex-col gap-3">
             <h1 className="text-5xl text-center sm:text-left sm:text-6xl font-bold">
-              Muhammad Daffa Al Kahffi
+              {introContent.header && introContent.header}
             </h1>
             <p className="text-center sm:text-left">
-              Undergraduate Mechatronics and Artificial Intelligence student at
-              Universitas Pendidikan Indonesia.
+              {introContent.subHeader && introContent.subHeader}
             </p>
           </div>
           <div className="w-full flex flex-col-reverse items-center gap-8 sm:flex-row sm:justify-between sm:items-center sm:mt-5">
@@ -48,7 +61,7 @@ export default function Intro({ id }: { id: string }) {
             {/*  */}
           </div>
         </section>
-        <ProfileDisplay />
+        <ProfileDisplay image={image} />
       </section>
     </header>
   );

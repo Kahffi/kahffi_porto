@@ -6,14 +6,15 @@ export default function ObservedElements(
   props: ComponentPropsWithoutRef<"div">
 ) {
   const parentRef = useRef<HTMLDivElement | null>(null);
-  const { setActiveId } = useContext(PageContext)!;
+  const { setActiveId, activeId } = useContext(PageContext)!;
 
   useEffect(() => {
     const parent = parentRef.current;
     if (!parent) return;
     function handleIntersect(entries: IntersectionObserverEntry[]) {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.target.id as ActiveId !== activeId) {
+
           setActiveId(entry.target.id as ActiveId);
         }
       });

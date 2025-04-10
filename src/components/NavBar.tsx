@@ -36,9 +36,8 @@ function NavBarIndicator({
 
   return (
     <div
-      className={`z-0 absolute h-9 translate-y-1/2 -top-1/2 bg-purple-900 rounded-full ${
-        isHidden && "opacity-0"
-      }`}
+      className={`z-0 absolute h-9 translate-y-1/2 -top-1/2 bg-purple-900 rounded-full ${isHidden && "opacity-0"
+        }`}
       style={indicatorStyle}
       ref={indicatorRef}
     />
@@ -49,7 +48,6 @@ export default function NavBar() {
   const sectionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const { SECTIONS, activeId, setActiveId } = useContext(PageContext)!;
   const [scrolled, setScrolled] = useState(false);
-  console.log(activeId, "activeId");
 
   // function navbarNavigate(section: ActiveId) {
   //   setActiveId(section);
@@ -73,9 +71,8 @@ export default function NavBar() {
   return (
     <nav className="w-full flex justify-center fixed left-1/2 -translate-x-1/2 top-3 z-50 ">
       <ul
-        className={`relative flex gap-3 py-3 px-2 rounded-full font-semibold border-blue-950 ${
-          scrolled && "bg-blue-950/60 -mt-1 border-2 backdrop-blur-xl shadow-md"
-        }  `}
+        className={`relative flex gap-3 py-3 px-2 rounded-full font-semibold border-blue-950 ${scrolled && "bg-blue-950/60 -mt-1 border-2 backdrop-blur-xl shadow-md"
+          }  `}
       >
         {/*  */}
         {SECTIONS.map((section, idx) => {

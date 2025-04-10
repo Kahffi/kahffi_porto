@@ -1,7 +1,16 @@
 import { createContext } from "react";
 
 type TAdminContext = {
-  uid: string;
+  admin: AdminAccount | null,
+  setAdmin: React.Dispatch<React.SetStateAction<AdminAccount | null>>
+  isLoading: boolean,
+
 };
 
-export const AdminContext = createContext<null | TAdminContext>(null);
+export type AdminAccount = {
+  uid: string,
+  email: string,
+  username: string,
+}
+
+export const AdminContext = createContext<TAdminContext>({ admin: null, setAdmin: () => { }, isLoading: true });
