@@ -13,7 +13,7 @@ type Props = {
 }
 
 export default function Intro({ id, introContent }: Props) {
-  const image = `data:image/jpeg;base64,${introContent.image}`
+  const image = `data:image/png;base64,${introContent.image}`
 
 
   return (
