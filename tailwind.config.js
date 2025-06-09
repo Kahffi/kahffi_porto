@@ -46,12 +46,21 @@ export default {
           "90%": { transform: "rotate(-10deg) scaleX(-1)" },
           "100%": { transform: "rotate(0deg) scaleX(-1)" },
         },
+        expand_vertical: {
+          "0%": {
+            "max-height": "0px",
+          },
+          "100%": {
+            "max-height": "999px",
+          },
+        },
       },
 
       animation: {
         profile_animate: "profile_animate 20s ease-in-out infinite",
         indicator_move: "indicator_move 300ms",
         waving_hand: "waving_hand 2s ease-in-out",
+        expand_vertical: "expand_vertical 700ms ease-in-out",
       },
       backgroundImage: {
         "gradient-conic":

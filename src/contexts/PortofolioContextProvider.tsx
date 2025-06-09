@@ -1,47 +1,13 @@
+import { ReactNode, useEffect, useState } from "react";
+import PortofolioContext, { PortofolioData } from "./PortofolioContext";
 import { onValue, ref } from "firebase/database";
-import { useEffect, useState } from "react";
 import { database } from "../firebase";
-export type PortofolioData = {
-  header: string;
-  subHeader: string;
-  selfIntro: string;
-  skills: Skill[];
-  tools: Tool[];
-  experiences: Experience[];
-};
 
-export enum ExperienceType {
-  internship = "internship",
-  fullTime = "full-time",
-  partTime = "part-time",
-}
-
-export type Experience = {
-  id: string;
-  companyName: string;
-  role: string;
-  summary: string;
-  companyLink: string;
-  type: ExperienceType;
-  location: string;
-  startDate: Date;
-  endDate?: Date;
-  currentlyWorkHere: boolean;
-};
-
-export type Skill = {
-  id: string;
-  skillName: string;
-  icon: string;
-};
-
-export type Tool = {
-  id: string;
-  toolName: string;
-  icon: string;
-};
-
-export default function usePortofolioData() {
+export default function PortofolioContextProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [portofolioData, setPortofolioData] = useState<PortofolioData>({
     header: "",
     selfIntro: "",
@@ -52,13 +18,13 @@ export default function usePortofolioData() {
   });
   const [profileImage, setProfileImage] = useState<string>("");
 
-  function updateField(fieldName: string, value: string){
+  function updateField(fieldName: string, value: unknown) {
     setPortofolioData((prev) => ({
       ...prev,
-      [fieldName]: value
-    }))
+      [fieldName]: value,
+    }));
   }
-  
+
   // Fetch Portofolio data from firebase
   useEffect(() => {
     const portoRef = ref(database, "portofolio/");
@@ -80,5 +46,17 @@ export default function usePortofolioData() {
 
     return () => unsub();
   }, []);
-  return { portofolioData, profileImage, setPortofolioData, setProfileImage, updateField };
+  return (
+    <PortofolioContext.Provider
+      value={{
+        portofolioData: portofolioData,
+        setPortofolioData: setPortofolioData,
+        profileImage: profileImage,
+        setProfileImage: setProfileImage,
+        updateField: updateField,
+      }}
+    >
+      {children}
+    </PortofolioContext.Provider>
+  );
 }

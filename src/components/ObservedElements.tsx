@@ -1,21 +1,22 @@
-import { ComponentPropsWithoutRef, useContext, useEffect, useRef } from "react";
-import { PageContext } from "../contexts/PageContext";
-import { ActiveId } from "../contexts/PageContextProvider";
+import { ComponentPropsWithoutRef, useEffect, useRef } from "react";
+import { usePageContext, Sections } from "../contexts/PageContextProvider";
 
 export default function ObservedElements(
-  props: ComponentPropsWithoutRef<"div">
+  props: ComponentPropsWithoutRef<"div">,
 ) {
   const parentRef = useRef<HTMLDivElement | null>(null);
-  const { setActiveId, activeId } = useContext(PageContext)!;
+  const { setActiveId, activeId } = usePageContext()!;
 
   useEffect(() => {
     const parent = parentRef.current;
     if (!parent) return;
     function handleIntersect(entries: IntersectionObserverEntry[]) {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.target.id as ActiveId !== activeId) {
-
-          setActiveId(entry.target.id as ActiveId);
+        if (
+          entry.isIntersecting &&
+          (entry.target.id as Sections) !== activeId
+        ) {
+          setActiveId(entry.target.id as Sections);
         }
       });
     }

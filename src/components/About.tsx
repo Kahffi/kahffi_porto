@@ -1,37 +1,31 @@
-import {
-  ComponentPropsWithoutRef,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { ComponentPropsWithoutRef, useEffect, useMemo, useState } from "react";
 import LabelWithIcon from "./ui/LabelsWithIcon";
 import GradientText from "./ui/GradientText";
 import wavingHand from "../assets/noto--waving-hand.svg";
-import { PageContext } from "../contexts/PageContext";
 
-import type { Skill, Tool } from "../pages/Admin";
 import SkillCard from "./ui/SkillCard";
+import { Skill, Tool } from "../hooks/usePortofolioData";
 
+import { usePageContext } from "../contexts/PageContextProvider";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
   id: string;
-  aboutContent: AboutContent
+  aboutContent: AboutContent;
 }
 
 type AboutContent = {
-  selfInfo: string,
-  skills: Skill[],
-  tools: Tool[],
-}
+  selfInfo: string;
+  skills: Skill[];
+  tools: Tool[];
+};
 
 type ParsedText = {
-  text: string,
-  highlighted: boolean,
-}
+  text: string;
+  highlighted: boolean;
+};
 
 export default function About(props: Props) {
-  const { activeId } = useContext(PageContext)!;
+  const { activeId } = usePageContext()!;
   const [animateHand, setAnimateHand] = useState(false);
 
   useEffect(() => {
@@ -42,12 +36,11 @@ export default function About(props: Props) {
     }
   }, [animateHand, activeId, props.id]);
 
-
   const parsedText = useMemo<ParsedText[]>(() => {
     const regex = /\*\*(.*?)\*\*/g;
     let match;
     let lastIndex = 0;
-    const result: ParsedText[] = []
+    const result: ParsedText[] = [];
 
     while ((match = regex.exec(props.aboutContent.selfInfo)) != null) {
       const matchStart = match.index;
@@ -57,29 +50,28 @@ export default function About(props: Props) {
       if (matchStart > lastIndex) {
         result.push({
           highlighted: false,
-          text: props.aboutContent.selfInfo.slice(lastIndex, matchStart)
-        })
+          text: props.aboutContent.selfInfo.slice(lastIndex, matchStart),
+        });
 
         // Add highlighted text (match[1])
         result.push({
           text: match[1],
           highlighted: true,
-        })
+        });
 
-        lastIndex = matchEnd
+        lastIndex = matchEnd;
       }
     }
     // add remaining normal text after the last match
     if (lastIndex < props.aboutContent.selfInfo.length) {
       result.push({
         highlighted: false,
-        text: props.aboutContent.selfInfo.substring(lastIndex)
-      })
+        text: props.aboutContent.selfInfo.substring(lastIndex),
+      });
     }
 
-    return result
-  }, [props.aboutContent])
-
+    return result;
+  }, [props.aboutContent]);
 
   return (
     <div
@@ -94,8 +86,9 @@ export default function About(props: Props) {
               src={wavingHand}
               alt=""
               width={"50px"}
-              className={`inline ${animateHand && "animate-waving_hand"
-                } transform scale-x-[-1]`}
+              className={`inline ${
+                animateHand && "animate-waving_hand"
+              } transform scale-x-[-1]`}
             />
           </span>
           <br /> I'm Daffa
@@ -104,12 +97,15 @@ export default function About(props: Props) {
         <p className="text-xl font-medium">
           {/* Render the normal and highlighted text */}
           {parsedText.map((textPart, idx) => {
-            return textPart.highlighted ?
-              <GradientText key={`highlightedIntroText${idx}`}>{textPart.text}</GradientText> :
+            return textPart.highlighted ? (
+              <GradientText key={`highlightedIntroText${idx}`}>
+                {textPart.text}
+              </GradientText>
+            ) : (
               textPart.text
+            );
           })}
         </p>
-
       </section>
       <div className="flex flex-col gap-5 md:min-h-full flex-1">
         <section className="flex flex-col gap-3">
@@ -125,11 +121,15 @@ export default function About(props: Props) {
           <ul className="flex flex-col gap-3 py-3 px-2 font-semibold">
             {props.aboutContent.skills.length > 0 &&
               props.aboutContent.skills.map((skill, idx) => {
-                return <SkillCard icon={skill.icon} skill={skill.skillName} key={`skillCard${idx}`} />
-              })
-            }
+                return (
+                  <SkillCard
+                    icon={skill.icon}
+                    skill={skill.skillName}
+                    key={`skillCard${idx}`}
+                  />
+                );
+              })}
           </ul>
-
         </section>
         <section className="flex flex-col gap-3">
           <h3 className="text-3xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text w-fit">

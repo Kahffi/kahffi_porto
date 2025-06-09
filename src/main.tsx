@@ -7,6 +7,7 @@ import Admin from "./pages/Admin.tsx";
 import Auth from "./pages/Auth.tsx";
 import AdminContextProvider from "./contexts/AdminContextProvider.tsx";
 import Protected from "./pages/Protected.tsx";
+import PortofolioContextProvider from "./contexts/PortofolioContextProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,31 +15,34 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-
-    element:
+    element: (
       <AdminContextProvider>
         <Protected />
-      </AdminContextProvider>,
+      </AdminContextProvider>
+    ),
     children: [
       {
         path: "admin",
-        element: <Admin />
-      }
-    ]
+        element: <Admin />,
+      },
+    ],
   },
   {
     path: "auth",
-    element: <AdminContextProvider>
-      <Auth />
-    </AdminContextProvider>
-
-  }
+    element: (
+      <AdminContextProvider>
+        <Auth />
+      </AdminContextProvider>
+    ),
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <>
-      <RouterProvider router={router} />
+      <PortofolioContextProvider>
+        <RouterProvider router={router} />
+      </PortofolioContextProvider>
     </>
   </StrictMode>
 );

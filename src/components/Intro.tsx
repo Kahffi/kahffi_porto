@@ -2,20 +2,17 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import ProfileDisplay from "./ProfileDisplay";
 
 type IntroContent = {
-  header: string,
-  subHeader: string,
-  image: string
-}
+  header: string;
+  subHeader: string;
+  image: string;
+};
 
 type Props = {
-  id: string,
-  introContent: IntroContent
-}
+  id: string;
+  introContent: IntroContent;
+};
 
 export default function Intro({ id, introContent }: Props) {
-  const image = `data:image/png;base64,${introContent.image}`
-
-
   return (
     <header
       id={id}
@@ -49,19 +46,25 @@ export default function Intro({ id, introContent }: Props) {
             {/* Social media links */}
             <ul className="flex gap-5 text-3xl hover:*:scale-110 *:cursor-pointer">
               <li>
-                <Icon icon={"mdi:github"} />
+                <a href="https://github.com/Kahffi" target="_blank">
+                  <Icon icon={"mdi:github"} />
+                </a>
               </li>
               <li>
-                <Icon icon={"mdi:linkedin"} />
+                <a href="https://linkedin.com/in/kahffi/" target="_blank">
+                  <Icon icon={"mdi:linkedin"} />
+                </a>
               </li>
               <li>
-                <Icon icon={"mdi:gmail"} />
+                <a href="mailto:daffaalkahffi24@gmail.com" target="_blank">
+                  <Icon icon={"mdi:gmail"} />
+                </a>
               </li>
             </ul>
             {/*  */}
           </div>
         </section>
-        <ProfileDisplay image={image} />
+        <ProfileDisplay image={introContent.image} />
       </section>
     </header>
   );
