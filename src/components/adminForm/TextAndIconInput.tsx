@@ -49,7 +49,7 @@ export default function TextAndIconInput({
           required
         />
         <LabelledTextInput
-          id={`${sectionName}${id}Name`}
+          id={`${sectionName}${id}Icon`}
           label={`${sectionName} ${idx + 1} Icon`}
           type="text"
           name="icon"
