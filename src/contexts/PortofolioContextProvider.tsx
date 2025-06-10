@@ -25,6 +25,10 @@ export default function PortofolioContextProvider({
     }));
   }
 
+  function formatDate(date: Date) {
+    return date.toISOString().split("T")[0];
+  }
+
   // Fetch Portofolio data from firebase
   useEffect(() => {
     const portoRef = ref(database, "portofolio/");
@@ -49,11 +53,12 @@ export default function PortofolioContextProvider({
   return (
     <PortofolioContext.Provider
       value={{
-        portofolioData: portofolioData,
-        setPortofolioData: setPortofolioData,
-        profileImage: profileImage,
-        setProfileImage: setProfileImage,
-        updateField: updateField,
+        portofolioData,
+        profileImage,
+        setPortofolioData,
+        setProfileImage,
+        updateField,
+        formatDate,
       }}
     >
       {children}

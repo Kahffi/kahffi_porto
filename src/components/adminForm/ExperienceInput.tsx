@@ -14,12 +14,9 @@ export default function ExperienceInput({
   onDelete,
 }: Props) {
   const now = new Date();
-  now.setDate(now.getDate() + 1);
+  now.setDate(now.getDate());
   const startDateMax = now.toISOString().split("T")[0];
-  const endDateMin = experience.startDate?.toISOString().split("T")[0];
-
-  const startDateString = experience.startDate?.toISOString().split("T")[0];
-  const endDateString = experience.endDate?.toISOString().split("T")[0];
+  const endDateMin = experience.startDate;
 
   return (
     <div className="border p-3">
@@ -39,6 +36,7 @@ export default function ExperienceInput({
           name="companyName"
           value={experience.companyName}
           onChange={onChange}
+          required
         />
         <LabelledTextInput
           id={`experience-${experience.id}-role`}
@@ -48,6 +46,7 @@ export default function ExperienceInput({
           name="role"
           value={experience.role}
           onChange={onChange}
+          required
         />
         <LabelledTextInput
           id={`experience-${experience.id}-link`}
@@ -57,6 +56,7 @@ export default function ExperienceInput({
           name="companyLink"
           value={experience.companyLink}
           onChange={onChange}
+          required
         />
         <LabelledTextInput
           id={`experience-${experience.id}-location`}
@@ -66,6 +66,7 @@ export default function ExperienceInput({
           name="location"
           value={experience.location}
           onChange={onChange}
+          required
         />
         <LabelledTextInput
           id={`experience-${experience.id}-summary`}
@@ -75,6 +76,7 @@ export default function ExperienceInput({
           name="summary"
           value={experience.summary}
           onChange={onChange}
+          required
         />
         <label
           htmlFor={`experience-${experience.id}-workHere`}
@@ -99,8 +101,9 @@ export default function ExperienceInput({
             data-id={experience.id}
             name="startDate"
             max={startDateMax}
-            value={startDateString}
+            value={experience.startDate}
             className="w-full bg-transparent border p-2 outline-none"
+            required
           />
         </label>
 
@@ -113,10 +116,18 @@ export default function ExperienceInput({
             data-id={experience.id}
             name="endDate"
             min={endDateMin}
-            value={endDateString}
+            value={experience.endDate}
             className="w-full bg-transparent border p-2 outline-none"
           />
         </label>
+        <input
+          id={`experience-${experience.id}-companyImage`}
+          type="file"
+          onChange={onChange}
+          name="companyImage"
+          data-id={experience.id}
+          className="bg-red-400 p-2 mb-2 w-full col-span-2"
+        />
       </div>
     </div>
   );

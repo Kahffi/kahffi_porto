@@ -46,6 +46,7 @@ export default function TextAndIconInput({
           onChange={changeHandler}
           type="text"
           value={value}
+          required
         />
         <LabelledTextInput
           id={`${sectionName}${id}Name`}
@@ -55,6 +56,7 @@ export default function TextAndIconInput({
           dataID={id}
           value={icon}
           onChange={changeHandler}
+          required
         />
       </div>
     </div>

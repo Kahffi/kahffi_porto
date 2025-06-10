@@ -12,7 +12,7 @@ export default function IntroForm() {
     setProfileImage,
   } = usePortofofolioContext()!;
 
-  const { imtobase64 } = useImageUtils();
+  const { stageImage } = useImageUtils();
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { value, id } = e.target;
@@ -21,19 +21,6 @@ export default function IntroForm() {
       ...prev,
       [id]: value,
     }));
-  }
-
-  async function stageImage(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!e.target.files || e.target.files?.length < 1) {
-      return;
-    }
-    try {
-      const file = e.target.files[0];
-      const base64Img = await imtobase64([file]);
-      setProfileImage(`data:image/png;base64,${base64Img[0]}`);
-    } catch (e) {
-      console.error(e);
-    }
   }
 
   return (
@@ -52,8 +39,11 @@ export default function IntroForm() {
         </label>
         <input
           type="file"
-          multiple
-          onChange={stageImage}
+          onChange={(e) =>
+            stageImage(e, (imgStr) => {
+              setProfileImage(imgStr);
+            })
+          }
           id="select-file"
           className="hidden"
         />
@@ -67,6 +57,7 @@ export default function IntroForm() {
         type="text"
         value={formData.header}
         onChange={handleChange}
+        required
       />
       <LabelledTextInput
         id="subHeader"
@@ -74,6 +65,7 @@ export default function IntroForm() {
         type="text-area"
         value={formData.subHeader}
         onChange={handleChange}
+        required
       />
       {/*  */}
     </fieldset>

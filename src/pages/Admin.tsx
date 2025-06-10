@@ -1,10 +1,5 @@
-import { type ChangeEvent } from "react";
-import { v7 as uuid } from "uuid";
 import { database } from "../firebase";
-import { ExperienceType } from "../hooks/usePortofolioData";
 import { ref, set } from "firebase/database";
-import Experiences from "../components/Experiences";
-import ExperienceInput from "../components/adminForm/ExperienceInput";
 import IntroForm from "../components/adminForm/IntroForm";
 import { usePortofofolioContext } from "../contexts/PortofolioContext";
 import AboutForm from "../components/adminForm/AboutForm";

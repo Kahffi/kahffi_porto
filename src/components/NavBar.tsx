@@ -72,7 +72,7 @@ export default function NavBar() {
   return (
     <nav className="w-full flex justify-center fixed left-1/2 -translate-x-1/2 top-3 z-50 ">
       <ul
-        className={`relative flex gap-3 py-3 px-2 rounded-full font-semibold border-blue-950 ${
+        className={`relative flex gap-3 py-3 px-2 rounded-full text-sm font-semibold border-blue-950 ${
           scrolled && "bg-blue-950/60 -mt-1 border-2 backdrop-blur-xl shadow-md"
         }  `}
       >
@@ -102,12 +102,12 @@ export default function NavBar() {
         <NavBarIndicator
           pos={
             sectionRefs.current.find(
-              (el) => el?.dataset["sectionName"] === activeId,
+              (el) => el?.dataset["sectionName"] === activeId
             )?.offsetLeft || 0
           }
           width={
             sectionRefs.current.find(
-              (el) => el?.dataset["sectionName"] === activeId,
+              (el) => el?.dataset["sectionName"] === activeId
             )?.offsetWidth || 0
           }
           isHidden={!scrolled}

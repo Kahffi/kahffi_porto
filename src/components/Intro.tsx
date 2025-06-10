@@ -35,7 +35,7 @@ export default function Intro({ id, introContent }: Props) {
               className="text-base py-2 px-4 rounded-full font-semibold bg-gradient-to-r from-blue-800 to-purple-700 hover:opacity-80 text-white transition-colors shadow-sm"
             >
               <a
-                href="https://drive.google.com/file/d/1Veop-E8MqT5vWMGrTlu4PgqLTAXlcccq/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1QJPhPYHHTks0Abp4dzAy9R8MDQd4CdNF/view?usp=sharing"
                 target="_blank"
               >
                 Resume <Icon icon={"mdi:document"} className="inline" />

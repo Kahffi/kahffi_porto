@@ -19,13 +19,14 @@ export enum ExperienceType {
 export type Experience = {
   id: string;
   companyName: string;
+  companyImage: string;
   role: string;
   summary: string;
   companyLink: string;
   type: ExperienceType;
   location: string;
-  startDate: Date;
-  endDate?: Date;
+  startDate: string;
+  endDate?: string; 
   currentlyWorkHere: boolean;
 };
 
@@ -47,6 +48,7 @@ type TPortofolioContext = {
     setPortofolioData: React.Dispatch<React.SetStateAction<PortofolioData>>
     setProfileImage: React.Dispatch<React.SetStateAction<string>>
     updateField: (fieldName: string, value: unknown) => void
+    formatDate: (date: Date) => string
 }
 
 const PortofolioContext = createContext<TPortofolioContext | null>(null)

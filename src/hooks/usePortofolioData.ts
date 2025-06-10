@@ -22,10 +22,11 @@ export type Experience = {
   role: string;
   summary: string;
   companyLink: string;
+  companyImage: string;
   type: ExperienceType;
   location: string;
-  startDate: Date;
-  endDate?: Date;
+  startDate: string; // ISO string only
+  endDate?: string; // ISO string only
   currentlyWorkHere: boolean;
 };
 
@@ -52,12 +53,14 @@ export default function usePortofolioData() {
   });
   const [profileImage, setProfileImage] = useState<string>("");
 
+  
   function updateField(fieldName: string, value: string){
     setPortofolioData((prev) => ({
       ...prev,
       [fieldName]: value
     }))
   }
+
   
   // Fetch Portofolio data from firebase
   useEffect(() => {

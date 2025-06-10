@@ -22,6 +22,7 @@ export default function LabelledTextInput(props: LabelledTextInputProps) {
           id={props.id}
           data-id={props.dataID}
           name={props.name}
+          required={props.required}
           value={props.value}
           onChange={(props as InputProps).onChange}
           type="text"
@@ -30,6 +31,7 @@ export default function LabelledTextInput(props: LabelledTextInputProps) {
       ) : (
         <textarea
           id={props.id}
+          required={props.required}
           data-id={props.dataID}
           name={props.name}
           value={props.value}

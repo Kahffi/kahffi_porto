@@ -4,14 +4,20 @@ import { ExperienceType } from "../../hooks/usePortofolioData";
 import Experiences from "../Experiences";
 import { v7 as uuid } from "uuid";
 import ExperienceInput from "./ExperienceInput";
+import useImageUtils from "../../hooks/useImageUtils";
 
 export default function ExperienceForm() {
-  const { portofolioData: formData, setPortofolioData: setFormData } =
-    usePortofofolioContext()!;
+  const {
+    portofolioData: formData,
+    setPortofolioData: setFormData,
+    formatDate,
+  } = usePortofofolioContext()!;
+
+  const { imtobase64 } = useImageUtils();
 
   // Experience Handlers
   function addExperience() {
-    const currentDate = new Date();
+    const currentDate = formatDate(new Date());
 
     setFormData((prev) => ({
       ...prev,
@@ -27,36 +33,65 @@ export default function ExperienceForm() {
           startDate: currentDate,
           summary: "",
           type: ExperienceType.internship,
+          companyImage: "",
         },
       ],
     }));
   }
 
+  function updateFormDataByValueID(
+    id: string,
+    fieldName: string,
+    value: unknown
+  ) {
+    setFormData((prev) => {
+      const updatedExperiences = prev.experiences.map((exp) => {
+        if (exp.id === id) {
+          return {
+            ...exp,
+            [fieldName]: value,
+          };
+        }
+        return exp;
+        //
+      });
+      return {
+        ...prev,
+        experiences: updatedExperiences,
+      };
+      //
+    });
+  }
+
   function handleExperienceChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, type } = e.target;
     const id = e.target.dataset.id;
-
-    let value;
-
-    if (type === "checkbox") {
-      value = e.target.checked;
-    } else {
-      value = e.target.value;
+    if (!id) {
+      console.error("Cannot update field, id is undefined");
+      return;
     }
+
+    let value: unknown;
 
     switch (type) {
       case "checkbox":
         value = e.target.checked;
         break;
-      case "date":
-        value = new Date(e.target.value);
+      //   file is an image
+      case "file":
+        imtobase64([e.target.files![0]])
+          .then((val) => {
+            const imgStr = `data:image/webp;base64,${val[0]}`;
+            value = imgStr;
+          })
+          .catch(() => (value = ""))
+          .finally(() => {
+            return updateFormDataByValueID(id, name, value);
+          });
         break;
       default:
         value = e.target.value;
     }
-
-    console.log(value, typeof value);
-
     setFormData((prev) => {
       const updatedExperiences = prev.experiences.map((exp) => {
         if (exp.id === id) {
@@ -106,6 +141,7 @@ export default function ExperienceForm() {
                 key={"expInput" + exp.id}
                 experience={exp}
                 onChange={handleExperienceChange}
+                onDelete={deleteExperience}
               />
             );
           })}
