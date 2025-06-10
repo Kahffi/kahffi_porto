@@ -1,5 +1,5 @@
-import { CSSProperties, useContext, useEffect, useRef, useState } from "react";
-import { PageContext } from "../contexts/PageContext";
+import { CSSProperties, useEffect, useRef, useState } from "react";
+import { usePageContext, Sections } from "../contexts/PageContextProvider";
 
 function NavBarIndicator({
   pos,
@@ -21,6 +21,7 @@ function NavBarIndicator({
     transitionDuration: "350ms",
   };
 
+  // Handle animation for navbar indicator (selected text bg)
   useEffect(() => {
     if (!indicatorRef.current) return;
     function transitionStart() {
@@ -47,9 +48,8 @@ function NavBarIndicator({
 
 export default function NavBar() {
   const sectionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-  const { SECTIONS, activeId, setActiveId } = useContext(PageContext)!;
+  const { SECTIONS, activeId, setActiveId } = usePageContext()!;
   const [scrolled, setScrolled] = useState(false);
-  console.log(activeId, "activeId");
 
   // function navbarNavigate(section: ActiveId) {
   //   setActiveId(section);
@@ -61,19 +61,18 @@ export default function NavBar() {
         setScrolled(true);
       } else {
         setScrolled(false);
-        setActiveId("Home");
+        setActiveId(Sections.home);
       }
     }
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <nav className="w-full flex justify-center fixed left-1/2 -translate-x-1/2 top-3 z-50 ">
       <ul
-        className={`relative flex gap-3 py-3 px-2 rounded-full font-semibold border-blue-950 ${
+        className={`relative flex gap-3 py-3 px-2 rounded-full text-sm font-semibold border-blue-950 ${
           scrolled && "bg-blue-950/60 -mt-1 border-2 backdrop-blur-xl shadow-md"
         }  `}
       >

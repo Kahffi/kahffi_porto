@@ -6,15 +6,6 @@ type Props = {
 };
 
 export default function ProjectCard({ project }: Props) {
-  // // Create a Cloudinary instance and set your cloud name.
-  // const cld = new Cloudinary({
-  //   cloud: {
-  //     cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
-  //   },
-  // });
-
-  // const testImage = cld.image(`cld-sample`);
-
   return (
     <div className="w-[350px] sm:w-[350px] text-lg border-[3px] shadow-md p-4 flex flex-col gap-5 rounded-[24px] h-[450px] bg-slate-950 border-slate-700  shadow-slate-950">
       <div className="w-full aspect-video rounded-lg overflow-hidden">

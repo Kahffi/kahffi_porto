@@ -75,7 +75,7 @@ export default function Projects() {
               className="inline -mt-1 ml-1 text-blue-700"
             />
           </a>
-          <div className="w-full underline text-bla"></div>
+          <span className="w-full underline text-bla"></span>
         </span>{" "}
       </p>
     </div>

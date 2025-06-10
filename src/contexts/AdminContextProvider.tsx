@@ -1,15 +1,37 @@
-import { useEffect, useState } from "react";
-import { AdminContext } from "./AdminContext";
+import { ReactElement, useEffect, useState } from "react";
+import { AdminAccount, AdminContext } from "./AdminContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
 
-export default function AdminContextProvider() {
+export default function AdminContextProvider({
+  children,
+}: {
+  children: ReactElement;
+}) {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [uid] = useState(null);
+  const [admin, setAdmin] = useState<AdminAccount | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {}, []);
+  // Observe for signed in admin
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAdmin({
+          uid: user.uid,
+          email: user.email!,
+          username: user.displayName!,
+        });
+      } else {
+        alert("user in");
+      }
+      setIsLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <AdminContext.Provider value={uid ? { uid: uid } : null}>
-      AdminContextProvider
+    <AdminContext.Provider value={{ admin, setAdmin, isLoading }}>
+      {children}
     </AdminContext.Provider>
   );
 }
