@@ -1,5 +1,5 @@
 // import { Cloudinary } from "@cloudinary/url-gen/index";
-import { TProject } from "./Projects";
+import { TProject } from "../constants/Project";
 import { Icon } from "@iconify/react/dist/iconify.js";
 type Props = {
   project: TProject;
