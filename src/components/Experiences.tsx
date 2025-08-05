@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
 import ExperienceItem from "./ExperienceItem";
-import { Experience } from "../hooks/usePortofolioData";
+import { type Experience } from "../constants/Experience";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
   experiences: Experience[];

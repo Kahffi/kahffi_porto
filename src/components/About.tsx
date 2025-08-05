@@ -4,20 +4,14 @@ import GradientText from "./ui/GradientText";
 import wavingHand from "../assets/noto--waving-hand.svg";
 
 import SkillCard from "./ui/SkillCard";
-import { Skill, Tool } from "../hooks/usePortofolioData";
 
 import { usePageContext } from "../contexts/PageContextProvider";
+import { type AboutContent } from "../constants/About";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
   id: string;
   aboutContent: AboutContent;
 }
-
-type AboutContent = {
-  selfInfo: string;
-  skills: Skill[];
-  tools: Tool[];
-};
 
 type ParsedText = {
   text: string;

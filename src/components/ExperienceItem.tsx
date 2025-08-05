@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import type { Experience } from "../hooks/usePortofolioData";
+import type { Experience } from "../constants/Experience";
 
 type Props = {
   experience: Experience;
