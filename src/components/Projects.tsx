@@ -1,9 +1,10 @@
 import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 
-import spinnyImg from "../assets/images/projects/spinny_dashboard_ss.png";
-import bangunImg from "../assets/images/projects/bangun_id_ss.png";
-import algoImg from "../assets/images/projects/algorithmia_site_ss.png";
+import spinnyImg from "../assets/images/projects/spinny_dashboard_ss.webp";
+import bangunImg from "../assets/images/projects/bangun_id_ss.webp";
+import algoImg from "../assets/images/projects/algorithmia_site_ss.webp";
+import tideWiseImg from "../assets/images/projects/tidewise_ss.webp";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 export type TProject = {
@@ -18,6 +19,16 @@ export type TProject = {
 
 export default function Projects() {
   const [projects] = useState<TProject[]>([
+    {
+      image: tideWiseImg,
+      title: "TideWise",
+      description:
+        "An expert system to assess tidal conditions and evaluate the safety level of coastal areas using the forward chaining inference method",
+      tags: ["Typescript", "React", "Tailwind CSS"],
+      category: [],
+      repoLink: "https://github.com/Kahffi/Sistem_pakar",
+      projectLink: "https://sistem-pakar-kelompok5.vercel.app",
+    },
     {
       image: spinnyImg,
       title: "Spinny Smart Hydroponic",
