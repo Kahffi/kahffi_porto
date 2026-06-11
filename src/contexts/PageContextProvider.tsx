@@ -11,7 +11,7 @@ export enum Sections {
   home = "Home",
   about = "About",
   project = "Projects",
-  experiences = "Experiences",
+  experience = "Experience",
 }
 
 type TPageContext = {

@@ -33,7 +33,7 @@ function App() {
           />
 
           <Projects />
-          <Experiences id={Sections.experiences} experiences={EXPERIENCES} />
+          <Experiences id={Sections.experience} experiences={EXPERIENCES} />
         </ObservedElements>
       </PageContextProvider>
       <Footer />

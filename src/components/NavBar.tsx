@@ -102,12 +102,12 @@ export default function NavBar() {
         <NavBarIndicator
           pos={
             sectionRefs.current.find(
-              (el) => el?.dataset["sectionName"] === activeId
+              (el) => el?.dataset["sectionName"] === activeId,
             )?.offsetLeft || 0
           }
           width={
             sectionRefs.current.find(
-              (el) => el?.dataset["sectionName"] === activeId
+              (el) => el?.dataset["sectionName"] === activeId,
             )?.offsetWidth || 0
           }
           isHidden={!scrolled}
