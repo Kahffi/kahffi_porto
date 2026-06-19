@@ -1,1 +1,89 @@
 @import "tailwindcss";
+
+@theme {
+  /* --- Background Images --- */
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+
+  /* --- Animations --- */
+  --animate-profile_animate: profile_animate 20s ease-in-out infinite;
+  --animate-indicator_move: indicator_move 300ms;
+  --animate-waving_hand: waving_hand 2s ease-in-out;
+  --animate-expand_vertical: expand_vertical 700ms ease-in-out;
+  --animate-loading_leave: loading_leave 500ms ease-out;
+
+  /* --- Keyframes --- */
+  @keyframes profile_animate {
+    0% {
+      border-radius: 100%;
+    }
+    25% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    75% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% {
+      border-radius: 100%;
+    }
+  }
+
+  @keyframes indicator_move {
+    0% {
+      border-radius: 100%;
+    }
+    /* 20% { border-radius: 90% 40% 80% 70% / 60% 80% 70% 90%; } */
+    50% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    /* 80% { border-radius: 90% 40% 80% 70% / 60% 80% 70% 90%; } */
+    95% {
+      border-radius: 100%;
+    }
+  }
+
+  @keyframes waving_hand {
+    0% {
+      transform: rotate(0deg) scaleX(-1);
+    }
+    10% {
+      transform: rotate(-25deg) scaleX(-1);
+    }
+    30% {
+      transform: rotate(20deg) scaleX(-1);
+    }
+    50% {
+      transform: rotate(-20deg) scaleX(-1);
+    }
+    70% {
+      transform: rotate(10deg) scaleX(-1);
+    }
+    90% {
+      transform: rotate(-10deg) scaleX(-1);
+    }
+    100% {
+      transform: rotate(0deg) scaleX(-1);
+    }
+  }
+
+  @keyframes expand_vertical {
+    0% {
+      max-height: 0px;
+    }
+    100% {
+      max-height: 999px;
+    }
+  }
+
+  @keyframes loading_leave {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+}
